@@ -1,0 +1,98 @@
+﻿<Window x:Class="CsmLibWpfExamples.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CsmLibWpfExamples"
+        xmlns:csm="clr-namespace:CsmLib.Wpf.Controls;assembly=CsmLib.Wpf"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance local:MainViewModel}"
+        Title="CsmLib Examples" Height="450" Width="800">
+    <TabControl>
+        <TabItem Header="Synchronized Items Source">
+            <DockPanel>
+                <CheckBox
+                    DockPanel.Dock="Top"
+                    Margin="3"
+                    IsChecked="{Binding IsCollectionModificationSynchronized}">
+                    <TextBlock TextWrapping="Wrap">
+                        Synchronize collection modifications? The app will eventually crash if this
+                        is unchecked.
+                    </TextBlock>
+                </CheckBox>
+                <ListBox csm:Synchronized.ItemsSource="{Binding Collection}"/>
+            </DockPanel>
+        </TabItem>
+        <TabItem Header="Bubble Mouse Wheel">
+            <ScrollViewer>
+                <DockPanel>
+                    <CheckBox
+                        x:Name="bubbleCheckBox"
+                        DockPanel.Dock="Top"
+                        IsChecked="True"
+                        Margin="3,3,3,100">
+                        <TextBlock TextWrapping="Wrap">
+                            Bubble scroll events? If this is unchecked, scrolling within the list
+                            box below will not scroll the parent scroll view.
+                        </TextBlock>
+                    </CheckBox>
+                    <ListBox
+                        DockPanel.Dock="Top"
+                        csm:MouseWheel.Bubble="{Binding IsChecked, ElementName=bubbleCheckBox}">
+                        <ListBoxItem Content="Item 0"/>
+                        <ListBoxItem Content="Item 1"/>
+                        <ListBoxItem Content="Item 2"/>
+                        <ListBoxItem Content="Item 3"/>
+                        <ListBoxItem Content="Item 4"/>
+                        <ListBoxItem Content="Item 5"/>
+                        <ListBoxItem Content="Item 6"/>
+                        <ListBoxItem Content="Item 7"/>
+                        <ListBoxItem Content="Item 8"/>
+                        <ListBoxItem Content="Item 9"/>
+                    </ListBox>
+                    <Grid Height="2000"/>
+                </DockPanel>
+            </ScrollViewer>
+        </TabItem>
+        <TabItem Header="Uniform Grid Orientation">
+            <DockPanel>
+                <ToggleButton
+                    x:Name="uniformGridButton"
+                    DockPanel.Dock="Top"
+                    Margin="3">
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+                            <Setter Property="Content" Value="Horizontal"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Content" Value="Vertical"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ToggleButton.Style>
+                </ToggleButton>
+                <csm:UniformGrid Rows="3" Columns="3" FirstRow="1">
+                    <csm:UniformGrid.Style>
+                        <Style TargetType="csm:UniformGrid">
+                            <Setter Property="Orientation" Value="Horizontal"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsChecked, ElementName=uniformGridButton}" Value="True">
+                                    <Setter Property="Orientation" Value="Vertical"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </csm:UniformGrid.Style>
+
+                    <TextBlock Text="Item 1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="Item 2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="Item 3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="Item 4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="Item 5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="Item 6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="Item 7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="Item 8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </csm:UniformGrid>
+            </DockPanel>
+        </TabItem>
+    </TabControl>
+</Window>
