@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CsmLibWpfExamples"
-        xmlns:csm="clr-namespace:CsmLib.Wpf.Controls;assembly=CsmLib.Wpf"
+        xmlns:c="clr-namespace:CsmLib.Wpf.Controls;assembly=CsmLib.Wpf"
+        xmlns:b="clr-namespace:CsmLib.Wpf.Behaviors;assembly=CsmLib.Wpf"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance local:MainViewModel}"
         Title="CsmLib Examples" Height="450" Width="800">
@@ -20,7 +21,7 @@
                         is unchecked.
                     </TextBlock>
                 </CheckBox>
-                <ListBox csm:Synchronized.ItemsSource="{Binding Collection}"/>
+                <ListBox b:CollectionBehaviors.SynchronizedItemsSource="{Binding Collection}"/>
             </DockPanel>
         </TabItem>
         <TabItem Header="Bubble Mouse Wheel">
@@ -38,7 +39,7 @@
                     </CheckBox>
                     <ListBox
                         DockPanel.Dock="Top"
-                        csm:MouseWheel.Bubble="{Binding IsChecked, ElementName=bubbleCheckBox}">
+                        b:MouseWheelBehaviors.Bubble="{Binding IsChecked, ElementName=bubbleCheckBox}">
                         <ListBoxItem Content="Item 0"/>
                         <ListBoxItem Content="Item 1"/>
                         <ListBoxItem Content="Item 2"/>
@@ -71,9 +72,9 @@
                         </Style>
                     </ToggleButton.Style>
                 </ToggleButton>
-                <csm:UniformGrid Rows="3" Columns="3" FirstRow="1">
-                    <csm:UniformGrid.Style>
-                        <Style TargetType="csm:UniformGrid">
+                <c:UniformGrid Rows="3" Columns="3" FirstRow="1">
+                    <c:UniformGrid.Style>
+                        <Style TargetType="c:UniformGrid">
                             <Setter Property="Orientation" Value="Horizontal"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsChecked, ElementName=uniformGridButton}" Value="True">
@@ -81,7 +82,7 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </csm:UniformGrid.Style>
+                    </c:UniformGrid.Style>
 
                     <TextBlock Text="Item 1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBlock Text="Item 2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -91,7 +92,7 @@
                     <TextBlock Text="Item 6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBlock Text="Item 7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBlock Text="Item 8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </csm:UniformGrid>
+                </c:UniformGrid>
             </DockPanel>
         </TabItem>
     </TabControl>

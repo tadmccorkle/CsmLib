@@ -12,7 +12,7 @@ public class UniformGrid : System.Windows.Controls.Primitives.UniformGrid
     private int rows;
     private int cols;
 
-    /// <inheritdoc cref="Orientation"/>
+    /// <summary>Identifies the <see cref="Orientation"/> property.</summary>
     public static readonly DependencyProperty OrientationProperty =
         DependencyProperty.Register(
             nameof(Orientation),
@@ -22,7 +22,7 @@ public class UniformGrid : System.Windows.Controls.Primitives.UniformGrid
                 Orientation.Horizontal,
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-    /// <inheritdoc cref="FirstRow"/>
+    /// <summary>Identifies the <see cref="FirstRow"/> property.</summary>
     public static readonly DependencyProperty FirstRowProperty =
         DependencyProperty.Register(
             nameof(FirstRow),
@@ -31,7 +31,7 @@ public class UniformGrid : System.Windows.Controls.Primitives.UniformGrid
             new FrameworkPropertyMetadata(
                 0,
                 FrameworkPropertyMetadataOptions.AffectsMeasure),
-            validateValueCallback: static (object o) => (int)o >= 0);
+            validateValueCallback: static o => (int)o >= 0);
 
     /// <summary>
     /// Gets or sets the value for the dimension in which child content should be arranged.

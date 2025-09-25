@@ -3,8 +3,9 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using CsmLib.Threading;
 
-namespace CsmLib.Synchronization;
+namespace CsmLib.Collections;
 
 /// <summary>
 /// An <see cref="ObservableCollection{T}"/> whose operations support synchronization by default.

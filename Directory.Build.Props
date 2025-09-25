@@ -6,7 +6,7 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
-		<LangVersion>latest</LangVersion>
+    <LangVersion>latest</LangVersion>
 
     <Authors>Tad McCorkle</Authors>
   </PropertyGroup>

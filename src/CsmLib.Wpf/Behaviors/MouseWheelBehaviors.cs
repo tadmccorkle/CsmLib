@@ -5,34 +5,42 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace CsmLib.Wpf.Controls;
+namespace CsmLib.Wpf.Behaviors;
 
 /// <summary>
 /// Attached properties for mouse wheel behaviors.
 /// </summary>
-public static class MouseWheel
+public static class MouseWheelBehaviors
 {
     /// <summary>
-    /// Specifies if mouse wheel events should be bubbled to the target's ancestor.
+    /// Identifies the <c><see cref="MouseWheelBehaviors"/>.Bubble</c> attached property.
     /// </summary>
     /// <remarks>
+    /// <para>
+    /// This attached property specifies if mouse wheel events should be bubbled to the target's
+    /// ancestor.
+    /// </para>
+    /// <para>
     /// If <see langword="true"/>, mouse wheel events will be bubbled to the target's nearest
     /// <see cref="UIElement"/> ancestor. If the target is a <see cref="ScrollViewer"/>, mouse wheel
     /// events will only be bubbled when attempting to scroll beyond its scrollable area.
+    /// </para>
     /// </remarks>
     public static readonly DependencyProperty BubbleProperty =
         DependencyProperty.RegisterAttached(
             "Bubble",
             typeof(bool),
-            typeof(MouseWheel),
+            typeof(MouseWheelBehaviors),
             new PropertyMetadata(false, OnBubbleChanged));
 
-    /// <inheritdoc cref="BubbleProperty"/>
+    /// <summary>Gets a value that indicates if the target <see cref="UIElement"/> should bubble mouse wheel events.</summary>
+    /// <remarks>See the <see cref="BubbleProperty"/> remarks for usage details.</remarks>
     [AttachedPropertyBrowsableForType(typeof(UIElement))]
     public static bool GetBubble(DependencyObject target)
         => (bool)target.GetValue(BubbleProperty);
 
-    /// <inheritdoc cref="BubbleProperty"/>
+    /// <summary>Sets a value that indicates if the target <see cref="UIElement"/> should bubble mouse wheel events.</summary>
+    /// <remarks>See the <see cref="BubbleProperty"/> remarks for usage details.</remarks>
     public static void SetBubble(DependencyObject target, bool value)
         => target.SetValue(BubbleProperty, value);
 
